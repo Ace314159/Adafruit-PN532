@@ -199,6 +199,11 @@ public:
   static void PrintHex(const byte *data, const uint32_t numBytes);
   static void PrintHexChar(const byte *pbtData, const uint32_t numBytes);
 
+  void readdata(uint8_t *buff, uint8_t n);
+  bool waitready(uint16_t timeout);
+
+  inline uint8_t inListedTag(void) { return _inListedTag; }
+
 private:
   int8_t _irq = -1, _reset = -1, _cs = -1;
   int8_t _uid[7];      // ISO14443A uid
@@ -207,10 +212,8 @@ private:
   int8_t _inListedTag; // Tg number of inlisted tag.
 
   // Low level communication functions that handle both SPI and I2C.
-  void readdata(uint8_t *buff, uint8_t n);
   void writecommand(uint8_t *cmd, uint8_t cmdlen);
   bool isready();
-  bool waitready(uint16_t timeout);
   bool readack();
 
   Adafruit_SPIDevice *spi_dev = NULL;
