@@ -154,7 +154,7 @@ public:
   // Generic PN532 functions
   bool SAMConfig(void);
   uint32_t getFirmwareVersion(void);
-  bool sendCommandCheckAck(uint8_t *cmd, uint8_t cmdlen,
+  bool sendCommandCheckAck(const uint8_t *cmd, uint8_t cmdlen,
                            uint16_t timeout = 100);
   bool writeGPIO(uint8_t pinstate);
   uint8_t readGPIO(void);
@@ -166,8 +166,8 @@ public:
       uint16_t timeout = 0); // timeout 0 means no timeout - will block forever.
   bool startPassiveTargetIDDetection(uint8_t cardbaudrate);
   bool readDetectedPassiveTargetID(uint8_t *uid, uint8_t *uidLength);
-  bool inDataExchange(uint8_t *send, uint8_t sendLength, uint8_t *response,
-                      uint8_t *responseLength);
+  bool inDataExchange(const uint8_t *send, uint8_t sendLength,
+                      uint8_t *response, uint8_t *responseLength);
   bool inListPassiveTarget();
   uint8_t AsTarget();
   uint8_t getDataTarget(uint8_t *cmd, uint8_t *cmdlen);
@@ -212,7 +212,7 @@ private:
   int8_t _inListedTag; // Tg number of inlisted tag.
 
   // Low level communication functions that handle both SPI and I2C.
-  void writecommand(uint8_t *cmd, uint8_t cmdlen);
+  void writecommand(const uint8_t *cmd, uint8_t cmdlen);
   bool isready();
   bool readack();
 

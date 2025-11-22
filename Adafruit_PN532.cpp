@@ -320,7 +320,7 @@ uint32_t Adafruit_PN532::getFirmwareVersion(void) {
 */
 /**************************************************************************/
 // default timeout of one second
-bool Adafruit_PN532::sendCommandCheckAck(uint8_t *cmd, uint8_t cmdlen,
+bool Adafruit_PN532::sendCommandCheckAck(const uint8_t *cmd, uint8_t cmdlen,
                                          uint16_t timeout) {
 
   // I2C works without using IRQ pin by polling for RDY byte
@@ -664,7 +664,7 @@ bool Adafruit_PN532::readDetectedPassiveTargetID(uint8_t *uid,
     @return  true on success, false otherwise.
 */
 /**************************************************************************/
-bool Adafruit_PN532::inDataExchange(uint8_t *send, uint8_t sendLength,
+bool Adafruit_PN532::inDataExchange(const uint8_t *send, uint8_t sendLength,
                                     uint8_t *response,
                                     uint8_t *responseLength) {
   if (sendLength > PN532_PACKBUFFSIZ - 2) {
@@ -1732,7 +1732,7 @@ uint8_t Adafruit_PN532::setDataTarget(uint8_t *cmd, uint8_t cmdlen) {
     @param  cmdlen    Command length in bytes
 */
 /**************************************************************************/
-void Adafruit_PN532::writecommand(uint8_t *cmd, uint8_t cmdlen) {
+void Adafruit_PN532::writecommand(const uint8_t *cmd, uint8_t cmdlen) {
   if (spi_dev) {
     // SPI command write.
     uint8_t checksum;
