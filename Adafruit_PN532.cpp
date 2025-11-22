@@ -624,10 +624,10 @@ bool Adafruit_PN532::readDetectedPassiveTargetID(uint8_t *uid,
   if (pn532_packetbuffer[7] != 1)
     return 0;
 
+#ifdef MIFAREDEBUG
   uint16_t sens_res = pn532_packetbuffer[9];
   sens_res <<= 8;
   sens_res |= pn532_packetbuffer[10];
-#ifdef MIFAREDEBUG
   PN532DEBUGPRINT.print(F("ATQA: 0x"));
   PN532DEBUGPRINT.println(sens_res, HEX);
   PN532DEBUGPRINT.print(F("SAK: 0x"));
